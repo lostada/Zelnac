@@ -9,32 +9,31 @@ public class Player : MonoBehaviour
     private Item itemEquipada;
     public ItemDisplay itemDisplay;
 
-    public int vidaMaxima = 100;  // Vida máxima do player
-    public int vidaAtual;  // Vida atual do player
+    public int vidaMaxima = 100;
+    public int vidaAtual;
 
     void Start()
     {
-        vidaAtual = vidaMaxima;  // Inicializa a vida com o valor máximo
-        itemEquipada = espada;  // Inicializa com a espada equipada
-        itemDisplay.UpdateItemDisplay(itemEquipada);  // Atualiza a UI do item exibido
+        vidaAtual = vidaMaxima; 
+        itemEquipada = espada; 
+        itemDisplay.UpdateItemDisplay(itemEquipada); 
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            AlternarItens();  // Alterna os itens quando "Q" é pressionado
+            AlternarItens(); 
         }
 
         if (Input.GetKeyDown(KeyCode.F))
         {
-            UsarItem();  // Chama o método para usar o item
+            UsarItem();
         }
     }
 
     void AlternarItens()
     {
-        // Alterna entre a espada e o pote de vida
         if (itemEquipada == espada)
         {
             itemEquipada = poteDeVida;
@@ -44,21 +43,20 @@ public class Player : MonoBehaviour
             itemEquipada = espada;
         }
 
-        itemDisplay.UpdateItemDisplay(itemEquipada);  // Atualiza a UI para o novo item equipado
+        itemDisplay.UpdateItemDisplay(itemEquipada);  
     }
 
     void UsarItem()
     {
         if (itemEquipada != null)
         {
-            itemEquipada.Use();  // Chama o método 'Use' do item atualmente equipado
+            itemEquipada.Use();  
         }
     }
 
-    // Método para restaurar vida
     public void RestaurarVida(int quantidade)
     {
-        vidaAtual = Mathf.Min(vidaAtual + quantidade, vidaMaxima);  // Garante que a vida não ultrapasse o máximo
+        vidaAtual = Mathf.Min(vidaAtual + quantidade, vidaMaxima);
         Debug.Log("Vida atual: " + vidaAtual);
     }
 }

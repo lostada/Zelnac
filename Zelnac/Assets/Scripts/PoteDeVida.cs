@@ -4,7 +4,7 @@ using System.Collections;
 
 public class PoteDeVida : Item
 {
-    public int cura = 20;  // Quantidade de vida restaurada pelo pote de vida
+    public int cura = 20;
 
     void Start()
     {
@@ -13,14 +13,12 @@ public class PoteDeVida : Item
 
     public override void Use()
     {
-        // Aqui chamamos o Player para restaurar a vida diretamente
         Debug.Log("Pote de Vida usado!");
-        FindObjectOfType<Player>().RestaurarVida(cura);  // Chama o método no Player para restaurar a vida
+        FindObjectOfType<Player>().RestaurarVida(cura); 
     }
 
     public override void Equip()
     {
-        // Se necessário, pode-se adicionar alguma lógica para equipar o item.
         Debug.Log("Pote de Vida equipado!");
     }
 }

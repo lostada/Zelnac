@@ -10,7 +10,7 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Enemy
   - Water
   - UI
   - 
@@ -40,6 +40,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: BackingGroung
+    uniqueID: 2333187717
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: WAIT THEY DONT LOVE LIKE I LOVE YOU
+    uniqueID: 3625106657
     locked: 0
