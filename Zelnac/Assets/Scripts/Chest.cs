@@ -1,19 +1,29 @@
 using UnityEngine;
-using Unity.Collections;
-using System.Collections.Generic;
 using UnityEngine.UI;
 
 public class Chest : MonoBehaviour
 {
-    public GameObject sword; 
-    public GameObject interactionImage; 
+    public GameObject sword;
+    public GameObject lifePotion; // Pote de Vida
+    public GameObject interactionImage;
     private bool playerNearby = false;
+    private bool itemEquipped = false;
 
     void Start()
     {
         if (interactionImage != null)
         {
-            interactionImage.SetActive(false); 
+            interactionImage.SetActive(false); // Inicializa a imagem de interação
+        }
+
+        if (sword != null)
+        {
+            sword.SetActive(false); // A espada começa desativada
+        }
+
+        if (lifePotion != null)
+        {
+            lifePotion.SetActive(false); // O Pote de Vida também começa desativado
         }
     }
 
@@ -24,7 +34,7 @@ public class Chest : MonoBehaviour
             playerNearby = true;
             if (interactionImage != null)
             {
-                interactionImage.SetActive(true); 
+                interactionImage.SetActive(true); // Exibe a imagem de interação quando o player se aproxima
             }
         }
     }
@@ -36,7 +46,7 @@ public class Chest : MonoBehaviour
             playerNearby = false;
             if (interactionImage != null)
             {
-                interactionImage.SetActive(false); 
+                interactionImage.SetActive(false); // Oculta a imagem de interação quando o player sai
             }
         }
     }
@@ -45,22 +55,33 @@ public class Chest : MonoBehaviour
     {
         if (playerNearby && Input.GetKeyDown(KeyCode.E))
         {
-            EquipSword();
+            EquipItem(); // Quando pressionado E, o item é equipado
         }
     }
 
-    void EquipSword()
+    void EquipItem()
     {
-        if (sword != null)
+        if (!itemEquipped)
         {
-            sword.SetActive(true); 
+            // Ativa a espada ou o pote de vida com base no item associado ao baú
+            if (sword != null)
+            {
+                sword.SetActive(true);  // Ativa a espada
+            }
+
+            if (lifePotion != null)
+            {
+                lifePotion.SetActive(true); // Ativa o pote de vida
+            }
+
+            itemEquipped = true; // Marca que o item foi equipado
         }
 
         if (interactionImage != null)
         {
-            interactionImage.SetActive(false); 
+            interactionImage.SetActive(false); // Remove a imagem de interação após pegar o item
         }
 
-        gameObject.SetActive(false);
+        gameObject.SetActive(false); // Desativa o baú
     }
 }

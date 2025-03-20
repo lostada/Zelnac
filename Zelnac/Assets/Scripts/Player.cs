@@ -4,41 +4,61 @@ using System.Collections;
 
 public class Player : MonoBehaviour
 {
-    public Item espada;      
-    public Item poteDeVida;   
+    public Item espada;
+    public Item poteDeVida;
     private Item itemEquipada;
-    public ItemDisplay itemDisplay; 
+    public ItemDisplay itemDisplay;
+
+    public int vidaMaxima = 100;  // Vida máxima do player
+    public int vidaAtual;  // Vida atual do player
 
     void Start()
     {
-        itemEquipada = espada;  
-        itemDisplay.UpdateItemDisplay(itemEquipada);  
+        vidaAtual = vidaMaxima;  // Inicializa a vida com o valor máximo
+        itemEquipada = espada;  // Inicializa com a espada equipada
+        itemDisplay.UpdateItemDisplay(itemEquipada);  // Atualiza a UI do item exibido
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q)) 
+        if (Input.GetKeyDown(KeyCode.Q))
         {
-            AlternarItens();
+            AlternarItens();  // Alterna os itens quando "Q" é pressionado
         }
 
-        if (Input.GetKeyDown(KeyCode.E)) 
+        if (Input.GetKeyDown(KeyCode.F))
         {
-            itemDisplay.UseItem();  
+            UsarItem();  // Chama o método para usar o item
         }
     }
 
     void AlternarItens()
     {
+        // Alterna entre a espada e o pote de vida
         if (itemEquipada == espada)
         {
-            itemEquipada = poteDeVida; 
+            itemEquipada = poteDeVida;
         }
         else
         {
-            itemEquipada = espada;  
+            itemEquipada = espada;
         }
 
-        itemDisplay.UpdateItemDisplay(itemEquipada); 
+        itemDisplay.UpdateItemDisplay(itemEquipada);  // Atualiza a UI para o novo item equipado
+    }
+
+    void UsarItem()
+    {
+        if (itemEquipada != null)
+        {
+            itemEquipada.Use();  // Chama o método 'Use' do item atualmente equipado
+        }
+    }
+
+    // Método para restaurar vida
+    public void RestaurarVida(int quantidade)
+    {
+        vidaAtual = Mathf.Min(vidaAtual + quantidade, vidaMaxima);  // Garante que a vida não ultrapasse o máximo
+        Debug.Log("Vida atual: " + vidaAtual);
     }
 }
