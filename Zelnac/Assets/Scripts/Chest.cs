@@ -1,11 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Chest : MonoBehaviour
 {
     public GameObject sword;
-    public GameObject lifePotion; 
+    public GameObject lifePotion;
     public GameObject interactionImage;
+    public TextMeshProUGUI dicaTexto;  // Arraste o objeto de texto da UI aqui
+
     private bool playerNearby = false;
     private bool itemEquipped = false;
 
@@ -18,12 +21,17 @@ public class Chest : MonoBehaviour
 
         if (sword != null)
         {
-            sword.SetActive(false); 
+            sword.SetActive(false);
         }
 
         if (lifePotion != null)
         {
-            lifePotion.SetActive(false); 
+            lifePotion.SetActive(false);
+        }
+
+        if (dicaTexto != null)
+        {
+            dicaTexto.gameObject.SetActive(false); // Esconde a dica de texto no início
         }
     }
 
@@ -34,7 +42,7 @@ public class Chest : MonoBehaviour
             playerNearby = true;
             if (interactionImage != null)
             {
-                interactionImage.SetActive(true); 
+                interactionImage.SetActive(true);
             }
         }
     }
@@ -46,7 +54,7 @@ public class Chest : MonoBehaviour
             playerNearby = false;
             if (interactionImage != null)
             {
-                interactionImage.SetActive(false); 
+                interactionImage.SetActive(false);
             }
         }
     }
@@ -65,12 +73,12 @@ public class Chest : MonoBehaviour
         {
             if (sword != null)
             {
-                sword.SetActive(true);  
+                sword.SetActive(true);
             }
 
             if (lifePotion != null)
             {
-                lifePotion.SetActive(true); 
+                lifePotion.SetActive(true);
             }
 
             itemEquipped = true;
@@ -81,6 +89,23 @@ public class Chest : MonoBehaviour
             interactionImage.SetActive(false);
         }
 
+        // Exibir dica de texto
+        if (dicaTexto != null)
+        {
+            dicaTexto.text = "Aperte Q para alternar os items e Aperte E para usar-los";
+
+            dicaTexto.gameObject.SetActive(true);
+            Invoke("EsconderDica", 3f); // Esconder dica após 3 segundos
+        }
+
         gameObject.SetActive(false);
+    }
+
+    void EsconderDica()
+    {
+        if (dicaTexto != null)
+        {
+            dicaTexto.gameObject.SetActive(false);
+        }
     }
 }
