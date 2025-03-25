@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
 {
     public Item espada;
     public Item poteDeVida;
-    private Item itemEquipada;
+    public Item itemEquipada;
     public ItemDisplay itemDisplay;
 
     public int vidaMaxima = 100;
@@ -31,6 +31,7 @@ public class Player : MonoBehaviour
         {
             UsarItem();
         }
+       
     }
 
     void AlternarItens()

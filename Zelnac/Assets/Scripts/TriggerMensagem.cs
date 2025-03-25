@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting;
 
 public class TriggerMensagem : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class TriggerMensagem : MonoBehaviour
     public Canvas canvas;
     public float tempoExibicao = 2f;
     public float fadeSpeed = 1.5f;
+    public GameObject olhao;
+    
 
     private CanvasGroup canvasGroup;
     private RectTransform uiTransform;
@@ -51,6 +54,8 @@ public class TriggerMensagem : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            olhao.SetActive(false);
+                    
             mensagemUI.SetActive(true);
             isFollowing = true;
             StartCoroutine(ExibirMensagem());
