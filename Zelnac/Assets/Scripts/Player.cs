@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -58,5 +59,13 @@ public class Player : MonoBehaviour
     {
         vidaAtual = Mathf.Min(vidaAtual + quantidade, vidaMaxima);
         Debug.Log("Vida atual: " + vidaAtual);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Porta"))
+        {
+            SceneManager.LoadScene("Nivel1");
+        }
     }
 }
