@@ -8,13 +8,12 @@ public class PlayerMov : MonoBehaviour
     public float moveSpeed = 5f;
     private Rigidbody2D rb;
     private Vector2 movement;
-    public GameObject player;
-
+    private Vector3 escalaOriginal;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-
+        escalaOriginal = transform.localScale;
     }
 
     void Update()
@@ -23,7 +22,12 @@ public class PlayerMov : MonoBehaviour
         movement.y = Input.GetAxisRaw("Vertical");
         movement.Normalize();
 
+        if (movement.x < 0)
+            transform.localScale = new Vector3(-escalaOriginal.x, escalaOriginal.y, escalaOriginal.z); 
+        else if (movement.x > 0)
+            transform.localScale = escalaOriginal; 
     }
+
     void FixedUpdate()
     {
         rb.velocity = movement * moveSpeed;
@@ -35,9 +39,5 @@ public class PlayerMov : MonoBehaviour
         {
             SceneManager.LoadScene("Nivel1");
         }
-
-
-
-
     }
 }

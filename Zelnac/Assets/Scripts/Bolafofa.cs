@@ -4,62 +4,46 @@ using UnityEngine;
 
 public class Bolafofa : MonoBehaviour
 {
-    public GameObject fogo;
-    public int danao = 30;
-    public float cooldown = 2f;
-    bool atacoCuldown;
-    bool atacaParça;
-    Enemy enemy;
-    Transform lugarintancia;
-    [SerializeField] float faritoBalVelocidade;
-    // Start is called before the first frame update
+    public GameObject fogo; // Prefab da bola de fogo
+    public float cooldown = 1f;
+    private bool atacoCooldown;
+    [SerializeField] private float velocidadeBola;
+
     void Start()
     {
-        enemy = FindObjectOfType<Enemy>();
-        atacoCuldown = true;
+        atacoCooldown = true;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Enemy"))
-        {
-            atacaParça = true;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Enemy"))
-        {
-            atacaParça = false;
-        }
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        atacaParça = true;
-        atacoCuldown = true;
-        if (atacaParça && atacoCuldown && Input.GetButtonDown("Fire1"))
+        if (atacoCooldown && (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D)))
         {
-         
-            GameObject obj = Instantiate(fogo);
-            obj.GetComponent<Rigidbody2D>().velocity = new Vector3(0,1,0).normalized *faritoBalVelocidade;
-            Attack();
+            StartCoroutine(Cooldown());
+            AtirarBolaDeFogo();
         }
     }
 
-    void Attack()
+    void AtirarBolaDeFogo()
     {
-        print("oi");
-        enemy.TakeDamage(10);
-        StartCoroutine(Coolwon());
+        // Instancia a bola de fogo na posição do player
+        GameObject obj = Instantiate(fogo, transform.position, Quaternion.identity);
+        Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
+
+        // Verifica qual tecla foi pressionada
+        if (Input.GetKeyDown(KeyCode.D)) // Se pressionar D, vai para a direita
+        {
+            rb.velocity = new Vector2(velocidadeBola, 0);
+        }
+        else if (Input.GetKeyDown(KeyCode.A)) // Se pressionar A, vai para a esquerda
+        {
+            rb.velocity = new Vector2(-velocidadeBola, 0);
+        }
     }
 
-    IEnumerator Coolwon()
+    IEnumerator Cooldown()
     {
-        atacoCuldown = true;
+        atacoCooldown = false;
         yield return new WaitForSeconds(cooldown);
-        atacoCuldown = !atacoCuldown;
+        atacoCooldown = true;
     }
 }

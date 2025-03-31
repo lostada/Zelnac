@@ -10,11 +10,11 @@ public class Sword : MonoBehaviour
     public float cudown = 0.7f;
     bool podeAtacColdon;
     bool podeAtac;
-    Enemy enemy;
+    InimigoVida enemy;
     // Start is called before the first frame update
     void Start()
     {
-        enemy = FindObjectOfType<Enemy>();
+        enemy = FindObjectOfType<InimigoVida>();
         podeAtacColdon = true;
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -43,13 +43,13 @@ public class Sword : MonoBehaviour
     void Attack()
     {
         print("oi");
-        enemy.TakeDamage(10);
+        enemy.ReceberDano(10);
         StartCoroutine(Coolwon());
     }
     IEnumerator Coolwon()
     {
-        podeAtacColdon = true;
+        podeAtacColdon = false;
         yield return new WaitForSeconds(cudown);
-        podeAtacColdon = !podeAtacColdon;
+        podeAtacColdon = true;
     }
 }
