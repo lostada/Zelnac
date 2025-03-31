@@ -1,22 +1,38 @@
+using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public int vida = 50;
-    public void ReceberDano(int dano)
-    {
-        vida -= dano;
-        Debug.Log("Inimigo recebeu " + dano + " de dano! Vida restante: " + vida);
+    public int maxHealth = 100;
+    public int currentHealth;
+    public GameObject pota;
 
-        if (vida <= 0)
+    protected virtual void Start()
+    {
+        currentHealth = maxHealth;
+    }
+    
+    public virtual void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        if (currentHealth <= 0)
         {
-            Morrer();
+            Die();
         }
     }
 
-    public virtual void Morrer()
+    protected virtual void Die()
     {
-        Debug.Log("Inimigo morreu!");
-        Destroy(gameObject); 
+        Destroy(gameObject);
+        pota.SetActive(true);
+    }
+}
+
+public class Dummy : Enemy
+{
+    protected override void Die()
+    {
+        Debug.Log("Matou seu unico amigo aqui.");
     }
 }
