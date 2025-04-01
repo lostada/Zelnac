@@ -26,7 +26,6 @@ public class BotaoPorta : MonoBehaviour
         {
             port.SetActive(false);
             port2.SetActive(true);
-            animator.SetTrigger("naoimporta");
             abriu = true;
         }
     }
