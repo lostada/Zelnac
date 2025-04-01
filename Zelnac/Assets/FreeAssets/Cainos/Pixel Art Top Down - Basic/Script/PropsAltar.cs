@@ -10,7 +10,6 @@ namespace Cainos.PixelArtTopDown_Basic
     {
         public List<SpriteRenderer> runes;
         public float lerpSpeed;
-
         private Color curColor;
         private Color targetColor;
 
@@ -21,11 +20,17 @@ namespace Cainos.PixelArtTopDown_Basic
 
         private void OnTriggerEnter2D(Collider2D other)
         {
+            if(other.CompareTag("caixa"))
+            targetColor.a = 1.0f;
+            if(other.CompareTag("Player"))
             targetColor.a = 1.0f;
         }
 
         private void OnTriggerExit2D(Collider2D other)
         {
+            if(other.CompareTag("caixa"))
+            targetColor.a = 0.0f;
+            if(other.CompareTag("Player"))
             targetColor.a = 0.0f;
         }
 

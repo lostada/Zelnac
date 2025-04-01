@@ -9,6 +9,7 @@ TagManager:
   - Porta
   - Chest
   - Arma
+  - caixa
   layers:
   - Default
   - TransparentFX

@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DialogoAparece : MonoBehaviour
+public class caixaDialoguei : MonoBehaviour
 {
     public GameObject dialogo;
+    public GameObject porta;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,11 +18,13 @@ public class DialogoAparece : MonoBehaviour
         
     }
 
-    public void OnTriggerEnter2D(Collider2D collision)
+     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("caixa"))
         {
-            dialogo.SetActive(true);          
+            Destroy(porta);
+            print("manuzita");
+            dialogo.SetActive(true);                  
         }
     }
 }

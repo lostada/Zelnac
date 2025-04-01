@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class InimigoVida : MonoBehaviour
 {
-    public GameObject portinha;
-    public GameObject portinha1;
+
     public GameObject dialogo;
-    public int vida = 50; // Vida inicial do inimigo
+    public GameObject enemy;
+    public GameObject porta;
+    public GameObject porta1;
+    public int vida = 90; 
 
     public void ReceberDano(int dano)
     {
         vida -= dano;
-        Debug.Log("Inimigo recebeu dano! Vida restante: " + vida);
+        Debug.Log("ele ta com" + vida);
 
         if (vida <= 0)
         {
@@ -23,10 +25,11 @@ public class InimigoVida : MonoBehaviour
     void Morrer()
     {
         Debug.Log("Inimigo derrotado!");
-        Destroy(gameObject); // Remove o inimigo da cena
-        portinha.SetActive(true);
-        portinha1.SetActive(true);
+        enemy.SetActive(false);
         dialogo.SetActive(true);
+        porta.SetActive(true);
+        porta1.SetActive(true);
+        Debug.Log("particulamaneira");
         
 }
 }

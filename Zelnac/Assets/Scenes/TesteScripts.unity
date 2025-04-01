@@ -308,7 +308,7 @@ MonoBehaviour:
   dialogoTexto: {fileID: 1445582405}
   dialogoImagem: {fileID: 41098078}
   dialogos:
-  - texto: Aperte ''R'' Para Orar
+  - texto: Aperte ''R'' para orar na estatua
     imagem: {fileID: 21300000, guid: ce0e08d08e2f3a94a98ccf44f01145c0, type: 3}
   - texto: E ir para o proximo nivel
     imagem: {fileID: 21300000, guid: ce0e08d08e2f3a94a98ccf44f01145c0, type: 3}
@@ -828,7 +828,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocidade: 5
-  alcancePerseguicao: 5
+  alcancePerseguicao: 3
 --- !u!61 &53249440
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -867,9 +867,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6955ba233ef7478428a1361d412032d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  portinha: {fileID: 316227862}
-  portinha1: {fileID: 342645212}
   dialogo: {fileID: 1259840948}
+  enemy: {fileID: 53249437}
+  porta: {fileID: 316227862}
+  porta1: {fileID: 342645212}
   vida: 50
 --- !u!212 &53249442
 SpriteRenderer:
@@ -1284,6 +1285,7 @@ GameObject:
   m_Component:
   - component: {fileID: 81975681}
   - component: {fileID: 81975682}
+  - component: {fileID: 81975683}
   m_Layer: 0
   m_Name: BolaDefofo
   m_TagString: Untagged
@@ -1358,6 +1360,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &81975683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 81975680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c0b76f4f3b10b2428af23d6b71e24b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fogo: {fileID: 7999726327686977282, guid: 520b727631d4bc549bb9d62bfad08740, type: 3}
+  cooldown: 2
+  velocidadeBola: 10
 --- !u!1 &90326741
 GameObject:
   m_ObjectHideFlags: 0

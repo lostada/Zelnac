@@ -12,7 +12,7 @@ public class PocaoCura : MonoBehaviour
 
         if (player != null)
         {
-            player.Curar(cura);
+            //player.Curar(cura);//
             Destroy(gameObject);
         }
     }
