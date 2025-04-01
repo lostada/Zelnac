@@ -7,6 +7,8 @@ public class GetItens : MonoBehaviour
     public GameObject itemType;
     public GameObject itemTypeIMG;
     public GameObject bauGameObjeto;
+    public GameObject bauAberto;
+    public GameObject bauFechado;
     bool podePegar;
     Itens itens;
     // Start is called before the first frame update
@@ -18,8 +20,10 @@ public class GetItens : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.E))
         {
+            bauFechado.SetActive(false);
+            bauAberto.SetActive(true);
             GetItem();
         }
     }

@@ -16,7 +16,8 @@ public class Bolafofa : MonoBehaviour
 
     void Update()
     {
-        if (atacoCooldown && (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D)))
+        // Verifica se o player pressionou o mouse ou o "Fire1" (que por padrão é o botão esquerdo do mouse)
+        if (atacoCooldown && (Input.GetButtonDown("Fire1") || Input.GetMouseButtonDown(0)))
         {
             StartCoroutine(Cooldown());
             AtirarBolaDeFogo();
@@ -29,14 +30,19 @@ public class Bolafofa : MonoBehaviour
         GameObject obj = Instantiate(fogo, transform.position, Quaternion.identity);
         Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
 
-        // Verifica qual tecla foi pressionada
-        if (Input.GetKeyDown(KeyCode.D)) // Se pressionar D, vai para a direita
+        // Verifica se o player está pressionando "D" ou "A"
+        if (Input.GetKey(KeyCode.D)) // Se pressionar D, vai para a direita
         {
             rb.velocity = new Vector2(velocidadeBola, 0);
         }
-        else if (Input.GetKeyDown(KeyCode.A)) // Se pressionar A, vai para a esquerda
+        else if (Input.GetKey(KeyCode.A)) // Se pressionar A, vai para a esquerda
         {
             rb.velocity = new Vector2(-velocidadeBola, 0);
+        }
+        else
+        {
+            // Caso nenhum botão seja pressionado, a bola não se move
+            rb.velocity = Vector2.zero;
         }
     }
 
