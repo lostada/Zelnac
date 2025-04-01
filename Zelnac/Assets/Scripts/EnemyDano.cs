@@ -35,7 +35,7 @@ public class EnemyDano : MonoBehaviour
     {
         while (true)
         {
-            statusPlayer.life -= damage;
+            statusPlayer.TakeDmg(damage);
             yield return new WaitForSeconds(2);
         }
     }
