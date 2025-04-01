@@ -18,7 +18,7 @@ public class ProximoNivel : MonoBehaviour
     {
         if(apertou && Input.GetKeyDown(KeyCode.R)) 
         {
-            SceneManager.LoadScene("venturalgl");
+            SceneManager.LoadScene("venturaLg");
             Debug.Log("tchau");
         }
     }
