@@ -199,6 +199,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 491321620733105662, guid: 31af8338ddec9b3439c38c0685aa5626, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 4723107735738678597, guid: 0bd97e23f8b532a4f8969605a3b00a4e, type: 3}
+    - target: {fileID: 491321620733105662, guid: 31af8338ddec9b3439c38c0685aa5626, type: 3}
       propertyPath: m_SortingLayer
       value: 0
       objectReference: {fileID: 0}
@@ -2265,9 +2269,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 617282329}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 320b5efe5c68f68419b17da3a0b0bc4a, type: 3}
+  m_Script: {fileID: 11500000, guid: eeac94e937dadb0429b3608ea9e00777, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cura: 1
 --- !u!212 &617282332
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2738,7 +2743,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 6.25, y: 6.25}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -2780,6 +2785,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   life: 3
+  maxLife: 3
+--- !u!95 &707009570
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 707009555}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d1415b699cb3b3e4abc820d0ed36de52, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &711579230
 GameObject:
   m_ObjectHideFlags: 0
@@ -9229,9 +9255,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c0b76f4f3b10b2428af23d6b71e24b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fogo: {fileID: 4480338867061407222, guid: a47be0c5e1b8d9f4ea6657ff739892f4, type: 3}
+  fogo: {fileID: 7999726327686977282, guid: 520b727631d4bc549bb9d62bfad08740, type: 3}
   cooldown: 1
-  faritoBalVelocidade: 10
+  velocidadeBola: 15
 --- !u!1 &2025264675
 GameObject:
   m_ObjectHideFlags: 0
