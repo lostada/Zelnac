@@ -48,6 +48,9 @@ TagManager:
   - name: BackingGroung
     uniqueID: 2333187717
     locked: 0
+  - name: Things
+    uniqueID: 3607131045
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
