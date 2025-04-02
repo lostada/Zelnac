@@ -10,6 +10,7 @@ TagManager:
   - Chest
   - Arma
   - caixa
+  - Key
   layers:
   - Default
   - TransparentFX
