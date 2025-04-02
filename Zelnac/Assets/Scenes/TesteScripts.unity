@@ -2659,6 +2659,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   estatua: {fileID: 316227862}
+  tri: venturaLg
 --- !u!1001 &325296366
 PrefabInstance:
   m_ObjectHideFlags: 0

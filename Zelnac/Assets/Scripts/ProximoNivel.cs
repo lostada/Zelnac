@@ -7,6 +7,7 @@ public class ProximoNivel : MonoBehaviour
 {
     public GameObject estatua;
     bool apertou;
+    public string tri;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +19,7 @@ public class ProximoNivel : MonoBehaviour
     {
         if(apertou && Input.GetKeyDown(KeyCode.R)) 
         {
-            SceneManager.LoadScene("venturaLg");
+            NextScene(tri);
             Debug.Log("tchau");
         }
     }
@@ -34,5 +35,9 @@ public class ProximoNivel : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
             apertou = false;
+    }
+    void NextScene(string gutanio)
+    {
+        SceneManager.LoadScene(gutanio);
     }
 }
