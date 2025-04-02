@@ -34,7 +34,7 @@ public class PlayerMov : MonoBehaviour
             else if (movement.x > 0)
                 transform.localScale = escalaOriginal; 
 
-            if (Input.GetKeyDown(KeyCode.R) && canDash && movement != Vector2.zero)
+            if (Input.GetKeyDown(KeyCode.Q) && canDash && movement != Vector2.zero)
             {
                 StartCoroutine(Dash());
             }
