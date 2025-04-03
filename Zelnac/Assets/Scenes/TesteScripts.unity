@@ -3006,6 +3006,10 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: 0.62660027
       objectReference: {fileID: 0}
+    - target: {fileID: 2055102311959635374, guid: 9e7797bb065982d4497d030f065d6e2f, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2055102311959635375, guid: 9e7797bb065982d4497d030f065d6e2f, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -10939,6 +10943,8 @@ MonoBehaviour:
   - texto: Chegue perto do bau e aperte E
     imagem: {fileID: 21300000, guid: ce0e08d08e2f3a94a98ccf44f01145c0, type: 3}
   - texto: Aperte tab para trocar os items em seu inventario
+    imagem: {fileID: 21300000, guid: ce0e08d08e2f3a94a98ccf44f01145c0, type: 3}
+  - texto: Para se curar aperte ''H''
     imagem: {fileID: 21300000, guid: ce0e08d08e2f3a94a98ccf44f01145c0, type: 3}
   tempoTroca: 2
 --- !u!114 &925810473
