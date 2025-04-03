@@ -1,55 +1,57 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Sword : MonoBehaviour
 {
+    public int dano = 10;
+    public float cooldown = 0.7f;
+    private bool podeAtacar = true;
+    private InimigoVida enemy;
+    private Animator anim;
 
-    public int danado = 10;
-    public float cudown = 0.7f;
-    bool podeAtacColdon;
-    bool podeAtac;
-    InimigoVida enemy;
-    // Start is called before the first frame update
     void Start()
     {
-        enemy = FindObjectOfType<InimigoVida>();
-        podeAtacColdon = true;
+        anim = GetComponent<Animator>(); // Pegando o Animator da espada
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Enemy"))
         {
-            podeAtac = true;
+            enemy = collision.GetComponent<InimigoVida>();
         }
     }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Enemy"))
         {
-            podeAtac = false;
+            enemy = null;
         }
     }
-    // Update is called once per frame
-    void Update()
+
+    public void Attack()
     {
-        if (podeAtac && podeAtacColdon && Input.GetButtonDown("Fire1"))
+        if (podeAtacar)
         {
-            Attack();
+            StartCoroutine(Atacar());
+        }
+    }
+
+    private IEnumerator Atacar()
+    {
+        podeAtacar = false;
+        anim.SetBool("IsAttacking", true); // Ativa a animação
+
+        if (enemy != null)
+        {
+            enemy.ReceberDano(dano);
         }
 
-    }
-    void Attack()
-    {
-        print("oi");
-        enemy.ReceberDano(10);
-        StartCoroutine(Coolwon());
-    }
-    IEnumerator Coolwon()
-    {
-        podeAtacColdon = false;
-        yield return new WaitForSeconds(cudown);
-        podeAtacColdon = true;
+        yield return new WaitForSeconds(0.7f); // Tempo do ataque
+
+        anim.SetBool("IsAttacking", false); // Volta para Idle
+        yield return new WaitForSeconds(cooldown);
+        podeAtacar = true;
     }
 }
