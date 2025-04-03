@@ -1,23 +1,16 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Bolafofa : MonoBehaviour
 {
-    public GameObject fogo; // Prefab da bola de fogo
+    public GameObject bolaDeFogoPrefab; // Prefab da bola de fogo
+    public Transform firePoint; // Ponto de spawn da bola
     public float cooldown = 1f;
-    private bool atacoCooldown;
-    [SerializeField] private float velocidadeBola;
-
-    void Start()
-    {
-        atacoCooldown = true;
-    }
+    private bool podeAtacar = true;
 
     void Update()
     {
-        // Verifica se o player pressionou o mouse ou o "Fire1" (que por padrão é o botão esquerdo do mouse)
-        if (atacoCooldown && (Input.GetButtonDown("Fire1") || Input.GetMouseButtonDown(0)))
+        if (podeAtacar && (Input.GetButtonDown("Fire1") || Input.GetMouseButtonDown(0)))
         {
             StartCoroutine(Cooldown());
             AtirarBolaDeFogo();
@@ -26,30 +19,17 @@ public class Bolafofa : MonoBehaviour
 
     void AtirarBolaDeFogo()
     {
-        // Instancia a bola de fogo na posição do player
-        GameObject obj = Instantiate(fogo, transform.position, Quaternion.identity);
-        Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePos.z = 0f; // Garante que a bola fique no mesmo plano do jogo
 
-        // Verifica se o player está pressionando "D" ou "A"
-        if (Input.GetKey(KeyCode.D)) // Se pressionar D, vai para a direita
-        {
-            rb.velocity = new Vector2(velocidadeBola, 0);
-        }
-        else if (Input.GetKey(KeyCode.A)) // Se pressionar A, vai para a esquerda
-        {
-            rb.velocity = new Vector2(-velocidadeBola, 0);
-        }
-        else
-        {
-            // Caso nenhum botão seja pressionado, a bola não se move
-            rb.velocity = Vector2.zero;
-        }
+        GameObject bola = Instantiate(bolaDeFogoPrefab, firePoint.position, Quaternion.identity);
+        bola.GetComponent<BolaDeFogo>().SetDirection(mousePos);
     }
 
     IEnumerator Cooldown()
     {
-        atacoCooldown = false;
+        podeAtacar = false;
         yield return new WaitForSeconds(cooldown);
-        atacoCooldown = true;
+        podeAtacar = true;
     }
 }

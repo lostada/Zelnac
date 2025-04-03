@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8192085480809325101}
   - component: {fileID: -2875949143140009482}
   - component: {fileID: 668878653296487964}
+  - component: {fileID: -6590197632295063964}
   m_Layer: 0
   m_Name: Circle
   m_TagString: Untagged
@@ -137,3 +138,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
+--- !u!114 &-6590197632295063964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4480338867061407222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87880d9d4d3318044b6f6e4a1fb4244c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5

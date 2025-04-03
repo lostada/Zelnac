@@ -9,12 +9,18 @@ EditorBuildSettings:
     path: Assets/Scenes/Tutorial.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 0
-    path: Assets/Scenes/Nivel1.unity
-    guid: 140d0fb427c4e25409c07901106ba08d
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/venturaLg.unity
-    guid: 566a28f5fae97d3439aef179f7d76b2a
+    path: Assets/Scenes/Menu.unity
+    guid: 52f02100c989869409830074dcd01549
   - enabled: 1
     path: Assets/Scenes/TesteScripts.unity
     guid: aad39318d93a2f44e8de4fb6d25540c9
+  - enabled: 1
+    path: Assets/Scenes/Nivel1.unity
+    guid: 566a28f5fae97d3439aef179f7d76b2a
+  - enabled: 1
+    path: Assets/Scenes/BossFight.unity
+    guid: 766dab0a85530f44588d016eb997c31c
   m_configObjects: {}
