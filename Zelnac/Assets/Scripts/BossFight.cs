@@ -1,107 +1,117 @@
-using System.Collections;
 using UnityEngine;
-using UnityEngine.UI; // Importa UI para usar Image
+using UnityEngine.UI;
+using System.Collections;
 
 public class BossFight : MonoBehaviour
 {
-    public GameObject projectilePrefab; // Prefab do projétil
-    public GameObject spikePrefab; // Prefab dos espinhos
-    public Transform attackPoint; // Ponto de spawn dos projéteis
-    public int projectileCount = 10;
+    public GameObject projectilePrefab;
+    public GameObject spikePrefab;
+    public Transform attackPoint;
     public float slashRange = 2f;
     public int slashDamage = 20;
-    public LayerMask playerLayer; // Camada do player
+    public LayerMask playerLayer;
     private Transform player;
 
-    public GameObject[] buttons; // Lista de botões
-    public Image[] bossLifeImages; // Referência aos corações na UI
-    public Sprite[] bossLifeSprites; // Sprites de vida do boss
-    private int bossLife = 6;
-    private int currentButtonIndex = 0;
+    public Slider healthSlider;
+    public int maxHealth = 100;
+    private int currentHealth;
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        if (playerObj != null)
+        {
+            player = playerObj.transform;
+            Debug.Log("Player encontrado: " + player.name);
+        }
+        else
+        {
+            Debug.LogError("Player não encontrado! Verifique a tag 'Player'.");
+        }
+
+        currentHealth = maxHealth;
+        UpdateHealthUI();
         StartCoroutine(StartAttackDelay());
-        StartCoroutine(ActivateButtons());
     }
 
     IEnumerator StartAttackDelay()
     {
-        yield return new WaitForSeconds(5f); // Delay de 5s antes do boss começar a atacar
-        StartCoroutine(SpawnSpikesContinuously());
-        StartCoroutine(BossAttackPattern());
-    }
-
-    IEnumerator BossAttackPattern()
-    {
-        while (true)
+        yield return new WaitForSeconds(5f);
+        if (player != null)
         {
-            // Fase 1: Disparar projéteis
-            for (int i = 0; i < projectileCount; i++)
-            {
-                Instantiate(projectilePrefab, attackPoint.position, Quaternion.identity);
-                yield return new WaitForSeconds(0.2f); // Pequeno delay entre os tiros
-            }
-
-            // Fase 2: Ataque de foice
-            SlashAttack();
-        }
-    }
-
-    void SlashAttack()
-    {
-        Collider2D hitPlayer = Physics2D.OverlapCircle(transform.position + transform.right * slashRange, 1f, playerLayer);
-        if (hitPlayer != null)
-        {
-            hitPlayer.GetComponent<PlayerStatus>()?.TakeDmg(slashDamage);
+            StartCoroutine(SpawnSpikesContinuously());
+            StartCoroutine(BossAttackPattern());
         }
     }
 
     IEnumerator SpawnSpikesContinuously()
     {
-        while (true)
+        while (player != null)
         {
-            if (player != null)
+            GameObject spike = Instantiate(spikePrefab, player.position, Quaternion.identity);
+            Destroy(spike, 2f);
+            yield return new WaitForSeconds(1f);
+        }
+    }
+
+    IEnumerator BossAttackPattern()
+    {
+        while (player != null)
+        {
+            for (int i = 0; i < 10; i++)
             {
-                GameObject spike = Instantiate(spikePrefab, player.position, Quaternion.identity);
-                Destroy(spike, 2f); // Espinho desaparece após 2s
+                Instantiate(projectilePrefab, attackPoint.position, Quaternion.identity);
+                yield return new WaitForSeconds(0.2f);
             }
-            yield return new WaitForSeconds(1f); // Espinhos surgem a cada 1s na posição do player
+
+            SlashAttack();
+            yield return new WaitForSeconds(1f);
         }
     }
 
-    IEnumerator ActivateButtons()
+    void SlashAttack()
     {
-        while (currentButtonIndex < buttons.Length)
+        Collider2D hitPlayer = Physics2D.OverlapCircle(transform.position, slashRange, playerLayer);
+        if (hitPlayer != null)
         {
-            buttons[currentButtonIndex].SetActive(true);
-            yield return new WaitForSeconds(5f);
-            currentButtonIndex++;
+            Debug.Log("Player atingido pelo ataque de foice!");
+            hitPlayer.GetComponent<PlayerStatus>()?.TakeDmg(slashDamage);
         }
-    }
-
-    public void ButtonPressed()
-    {
-        if (bossLife > 0)
+        else
         {
-            bossLife--;
-            UpdateBossUI();
+            Debug.Log("Ataque de foice falhou! Nenhum jogador detectado.");
         }
     }
 
-    void UpdateBossUI()
+    public void TakeDamage(int damage)
     {
-        if (bossLife >= 0 && bossLife < bossLifeSprites.Length)
+        currentHealth -= damage;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        UpdateHealthUI();
+
+        if (currentHealth <= 0)
         {
-            bossLifeImages[bossLife].sprite = bossLifeSprites[bossLife];
+            Die();
         }
     }
 
-    void OnDrawGizmos()
+    void UpdateHealthUI()
     {
-        // Gizmo para visualizar o alcance do corte
+        if (healthSlider != null)
+        {
+            healthSlider.value = (float)currentHealth / maxHealth;
+        }
+    }
+
+    void Die()
+    {
+        Debug.Log("Boss derrotado!");
+        Destroy(gameObject);
+    }
+
+    void OnDrawGizmosSelected()
+    {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position + transform.right * slashRange, 1f);
+        Gizmos.DrawWireSphere(transform.position, slashRange);
     }
 }

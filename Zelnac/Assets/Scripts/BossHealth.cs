@@ -5,17 +5,19 @@ public class BossHealth : MonoBehaviour
 {
     public int maxHealth = 60;
     private int currentHealth;
-    public Image[] healthImages; // Imagens da barra de vida do chefe
+    public Slider healthSlider; // Barra de vida do chefe
 
     void Start()
     {
         currentHealth = maxHealth;
-        AtualizarVida();
+        healthSlider.maxValue = maxHealth; // Define o valor máximo da barra
+        healthSlider.value = currentHealth; // Inicia cheia
     }
 
     public void ReceberDano(int dano)
     {
         currentHealth -= dano;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth); // Garante que a vida não seja negativa
         AtualizarVida();
 
         if (currentHealth <= 0)
@@ -26,14 +28,7 @@ public class BossHealth : MonoBehaviour
 
     void AtualizarVida()
     {
-        int vidaPorImagem = maxHealth / healthImages.Length;
-        for (int i = 0; i < healthImages.Length; i++)
-        {
-            if (currentHealth >= (i + 1) * vidaPorImagem)
-                healthImages[i].enabled = true;
-            else
-                healthImages[i].enabled = false;
-        }
+        healthSlider.value = currentHealth; // Atualiza a barra de vida
     }
 
     void Morrer()
