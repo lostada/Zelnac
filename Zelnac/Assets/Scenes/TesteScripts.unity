@@ -1710,6 +1710,18 @@ PrefabInstance:
       propertyPath: m_CullingMask.m_Bits
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7818990232416155900, guid: 31af8338ddec9b3439c38c0685aa5626, type: 3}
+      propertyPath: m_Pitch
+      value: 0.78
+      objectReference: {fileID: 0}
+    - target: {fileID: 7818990232416155900, guid: 31af8338ddec9b3439c38c0685aa5626, type: 3}
+      propertyPath: m_Volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7818990232416155900, guid: 31af8338ddec9b3439c38c0685aa5626, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: b4af8935a02b4d64d8c150ddfb6195bd, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31af8338ddec9b3439c38c0685aa5626, type: 3}
 --- !u!1001 &124137946

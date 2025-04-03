@@ -1179,6 +1179,18 @@ PrefabInstance:
       propertyPath: m_CullingMask.m_Bits
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 7818990232416155900, guid: 31af8338ddec9b3439c38c0685aa5626, type: 3}
+      propertyPath: m_Pitch
+      value: 0.87
+      objectReference: {fileID: 0}
+    - target: {fileID: 7818990232416155900, guid: 31af8338ddec9b3439c38c0685aa5626, type: 3}
+      propertyPath: m_Volume
+      value: 0.283
+      objectReference: {fileID: 0}
+    - target: {fileID: 7818990232416155900, guid: 31af8338ddec9b3439c38c0685aa5626, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 195e8d991274d2b4cbff7fb0f34bf1de, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31af8338ddec9b3439c38c0685aa5626, type: 3}
 --- !u!1001 &124137946
@@ -2043,6 +2055,7 @@ MonoBehaviour:
   porta: {fileID: 0}
   porta1: {fileID: 0}
   vida: 5
+  seta: {fileID: 0}
 --- !u!212 &271806691
 SpriteRenderer:
   m_ObjectHideFlags: 0
